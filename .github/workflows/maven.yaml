@@ -3,7 +3,15 @@ on:
   workflow_call:
      outputs:
         dockerImage: 
-        value: ${{ jobs.job1.outputs.output1 }}
+           value: ${{ jobs.docker.outputs.output1 }}
 jobs:
-    job1:
+    docker:
+      runs-on: ubuntu-latest
+      outputs:
+         output1: ${{ steps.step1.outputs.dockerImage }}
+      steps:
+        - id: step1
+          run: echo "::set-output name=dockerImage::'Dockerfile'"
+        - name: building image 
+          run: echo "image"
       
