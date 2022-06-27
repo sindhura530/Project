@@ -1,0 +1,62 @@
+name: CI and CD pipeline
+on:
+  workflow_dispatch:
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: build
+         run: echo 'mvn clean install'
+  Code-Quality:
+    needs: compile
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: code Analysis
+         run: echo 'mvn sonar:sonar'
+  security-scan:
+    needs: Code-Quality
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: echo 'scanning'
+  Quality-Gates:
+    needs: security-scan
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: CodeAnalysis_Quality_gates
+         run: echo 'code analysis quality gates'
+       - name: SecurityAnalysis_Quality_gates
+         run: echo 'security analysis quality gates'
+  Publish_Artifact:
+    needs: Quality-Gates
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: github
+         run: echo 'github'
+       - name: Jfrog
+         run: echo 'jfrog'
+  Deploy_Develop:
+    needs: Publish_Artifact
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: deploying
+         run: echo 'feature branch'
+  Deploy_Stage:
+    needs: Deploy_Develop
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: deploying into develop branch
+         run: echo 'develop branch'
+  Deploy_PROD:
+    needs: Deploy_Stage
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: deploying to Prod
+         run: echo 'master branch'
