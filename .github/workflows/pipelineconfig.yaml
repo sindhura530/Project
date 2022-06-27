@@ -30,16 +30,20 @@ jobs:
       output7: ${{ steps.step7.outputs.TragetFileType }}
     steps:
       - id: step1
-        run: echo "::set-output name=language::'azureappservice'"
+        run: echo "::set-output name=pipelinetype::'azureappservice'"
       - id: step2
-        run: echo "::set-output name=build_tool::'java'" 
+        run: echo "::set-output name=language::'java'" 
       - id: step3
-        run: echo "::set-output name=language::1.8"
+        run: echo "::set-output name=javaVersion::1.8"
       - id: step4
-        run: echo "::set-output name=build_tool::'maven'" 
+        run: echo "::set-output name=buildTool::'maven'" 
       - id: step5
-        run: echo "::set-output name=language::abc"
+        run: echo "::set-output name=appName::abc"
       - id: step6
-        run: echo "::set-output name=build_tool::'app.jar'" 
+        run: echo "::set-output name=NewJarFileName::'app.jar'" 
       - id: step7
-        run: echo "::set-output name=language::'jar'"
+        run: echo "::set-output name=TargetFileType::'jar'"
+  chai:
+    needs: example_job
+    if: ${{ needs.example_job.outputs.output2 }} == 'java' && ${{ needs.example_job.outputs.output3 }} == 1.8
+    uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main
