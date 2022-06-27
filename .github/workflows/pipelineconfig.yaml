@@ -43,7 +43,3 @@ jobs:
         run: echo "::set-output name=NewJarFileName::'app.jar'" 
       - id: step7
         run: echo "::set-output name=TargetFileType::'jar'"
-  chai:
-    needs: example_job
-    if: ${{ needs.example_job.outputs.output2 }} == 'java' && ${{ needs.example_job.outputs.output3 }} == 1.8
-    uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main
