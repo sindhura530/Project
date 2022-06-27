@@ -1,45 +1,45 @@
 name: inputs to send to CI/CD pipeline
 on:
   workflow_call:
-      inputs:
-         pipelineType: 
-         value: ${{ jobs.example_job.inputs.input1 }}
+      outputs:
+         pipelineType:
+            value: ${{ jobs.example_job.outputs.output1 }}
          language:
-         value: ${{ jobs.example_job.inputs.input2 }}
+            value: ${{ jobs.example_job.outputs.output2 }}
          javaVersion:
-         value: ${{ jobs.example_job.inputs.input3 }}
+            value: ${{ jobs.example_job.outputs.output3 }}
          buildTool: 
-         value: ${{ jobs.example_job.inputs.input4 }}
+            value: ${{ jobs.example_job.outputs.output4 }}
          appName: 
-         value: ${{ jobs.example_job.inputs.input5 }}
+            value: ${{ jobs.example_job.outputs.output5 }}
          NewJarFileName: 
-         value: ${{ jobs.example_job.inputs.input6 }}
+            value: ${{ jobs.example_job.outputs.output6 }}
          TragetFileType: 
-         value: ${{ jobs.example_job.inputs.input7 }}
+            value: ${{ jobs.example_job.outputs.output7 }}
 jobs:
   example_job:
     name: Generate output
     runs-on: ubuntu-latest
-    inputs:
-      input1: ${{ steps.step1.inputs.pipelinetype }}
-      input2: ${{ steps.step2.inputs.language }}
-      input3: ${{ steps.step1.inputs.javaVersion }}
-      input4: ${{ steps.step2.inputs.buildTool }}
-      input5: ${{ steps.step1.inputs.appName }}
-      input6: ${{ steps.step2.inputs.NewJarFileName }}
-      input7: ${{ steps.step1.inputs.TragetFileType }}
+    outputs:
+      output1: ${{ steps.step1.outputs.pipelinetype }}
+      output2: ${{ steps.step2.outputs.language }}
+      output3: ${{ steps.step3.outputs.javaVersion }}
+      output4: ${{ steps.step4.outputs.buildTool }}
+      output5: ${{ steps.step5.outputs.appName }}
+      output6: ${{ steps.step6.outputs.NewJarFileName }}
+      output7: ${{ steps.step7.outputs.TragetFileType }}
     steps:
       - id: step1
         run: echo "::set-output name=language::'azureappservice'"
       - id: step2
         run: echo "::set-output name=build_tool::'java'" 
-      - id: step1
+      - id: step3
         run: echo "::set-output name=language::1.8"
-      - id: step2
+      - id: step4
         run: echo "::set-output name=build_tool::'maven'" 
-      - id: step1
+      - id: step5
         run: echo "::set-output name=language::abc"
-      - id: step2
+      - id: step6
         run: echo "::set-output name=build_tool::'app.jar'" 
-      - id: step1
+      - id: step7
         run: echo "::set-output name=language::'jar'"
