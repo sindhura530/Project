@@ -1,0 +1,9 @@
+name: maven pipeline
+on:
+  workflow_call:
+     outputs:
+        dockerImage: 
+        value: ${{ jobs.job1.outputs.output1 }}
+jobs:
+    job1:
+      
