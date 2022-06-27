@@ -1,0 +1,45 @@
+name: inputs to send to CI/CD pipeline
+on:
+  workflow_call:
+      inputs:
+         pipelineType: 
+         value: ${{ jobs.example_job.inputs.input1 }}
+         language:
+         value: ${{ jobs.example_job.inputs.input2 }}
+         javaVersion:
+         value: ${{ jobs.example_job.inputs.input3 }}
+         buildTool: 
+         value: ${{ jobs.example_job.inputs.input4 }}
+         appName: 
+         value: ${{ jobs.example_job.inputs.input5 }}
+         NewJarFileName: 
+         value: ${{ jobs.example_job.inputs.input6 }}
+         TragetFileType: 
+         value: ${{ jobs.example_job.inputs.input7 }}
+jobs:
+  example_job:
+    name: Generate output
+    runs-on: ubuntu-latest
+    inputs:
+      input1: ${{ steps.step1.inputs.pipelinetype }}
+      input2: ${{ steps.step2.inputs.language }}
+      input3: ${{ steps.step1.inputs.javaVersion }}
+      input4: ${{ steps.step2.inputs.buildTool }}
+      input5: ${{ steps.step1.inputs.appName }}
+      input6: ${{ steps.step2.inputs.NewJarFileName }}
+      input7: ${{ steps.step1.inputs.TragetFileType }}
+    steps:
+      - id: step1
+        run: echo "::set-output name=language::'azureappservice'"
+      - id: step2
+        run: echo "::set-output name=build_tool::'java'" 
+      - id: step1
+        run: echo "::set-output name=language::1.8"
+      - id: step2
+        run: echo "::set-output name=build_tool::'maven'" 
+      - id: step1
+        run: echo "::set-output name=language::abc"
+      - id: step2
+        run: echo "::set-output name=build_tool::'app.jar'" 
+      - id: step1
+        run: echo "::set-output name=language::'jar'"
