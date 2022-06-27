@@ -9,21 +9,21 @@ jobs:
        - name: build
          run: echo 'mvn clean install'
   Code-Quality:
-    needs: compile
     runs-on: ubuntu-latest
+    needs: compile
     steps:
        - uses: actions/checkout@v3
        - name: code Analysis
          run: echo 'mvn sonar:sonar'
   security-scan:
-    needs: Code-Quality
     runs-on: ubuntu-latest
+    needs: Code-Quality
     steps:
        - uses: actions/checkout@v3
        - name: echo 'scanning'
   Quality-Gates:
-    needs: security-scan
     runs-on: ubuntu-latest
+    needs: security-scan
     steps:
        - uses: actions/checkout@v3
        - name: CodeAnalysis_Quality_gates
@@ -31,8 +31,8 @@ jobs:
        - name: SecurityAnalysis_Quality_gates
          run: echo 'security analysis quality gates'
   Publish_Artifact:
-    needs: Quality-Gates
     runs-on: ubuntu-latest
+    needs: Quality-Gates
     steps:
        - uses: actions/checkout@v3
        - name: github
@@ -40,22 +40,22 @@ jobs:
        - name: Jfrog
          run: echo 'jfrog'
   Deploy_Develop:
-    needs: Publish_Artifact
     runs-on: ubuntu-latest
+    needs: Publish_Artifact
     steps:
        - uses: actions/checkout@v3
        - name: deploying
          run: echo 'feature branch'
   Deploy_Stage:
-    needs: Deploy_Develop
     runs-on: ubuntu-latest
+    needs: Deploy_Develop
     steps:
        - uses: actions/checkout@v3
        - name: deploying into develop branch
          run: echo 'develop branch'
   Deploy_PROD:
-    needs: Deploy_Stage
     runs-on: ubuntu-latest
+    needs: Deploy_Stage
     steps:
        - uses: actions/checkout@v3
        - name: deploying to Prod
