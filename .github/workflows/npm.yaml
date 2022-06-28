@@ -13,4 +13,5 @@ jobs:
           - name: building docker image
             run: |
                 ls -l
+                readlink -f Dockerfile
 
