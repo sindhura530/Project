@@ -6,11 +6,11 @@ jobs:
      uses: chaithragudimalla/Project/.github/workflows/pipelineconfig.yaml@main
   check:
      needs: inputs
-     if: "!contains(needs.inputs.outputs.buildTool, 'maven')"
+     if: "contains(needs.inputs.outputs.buildTool, 'maven')"
      uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main
   check1:
     needs: inputs
-    if: "!contains(needs.inputs.outputs.buildTool, 'nodejs')"
+    if: "contains(needs.inputs.outputs.buildTool, 'nodejs')"
     uses: chaithragudimalla/Project/.github/workflows/pipelineco.yaml@main
     with:
        pipelinetype: 'awsEBS'
