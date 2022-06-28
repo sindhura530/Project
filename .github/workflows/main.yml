@@ -6,6 +6,7 @@ jobs:
     uses: chaithragudimalla/Project/.github/workflows/pipelineconfig.yaml@main
   compile:
     needs: inputs
+    if: ${{ needs.inputs.outputs.buildTool }} == 'maven'
     runs-on: ubuntu-latest
     steps:
        - uses: actions/checkout@v3
