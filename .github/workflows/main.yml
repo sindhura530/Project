@@ -3,18 +3,14 @@ on:
   workflow_dispatch:
 jobs:
   inputs:
-     uses: chaithragudimalla/Project/.github/workflows/pipelineco.yaml@main
-     with:
-       pipelinetype: 'awsEBS'
-       buildTool: 'maven'
-       language: 'java'
+     uses: chaithragudimalla/Project/.github/workflows/pipelineconfig.yaml@main
   check:
      needs: inputs
-     if: ${{ needs.inputs.buildTool == 'maven'}} 
+     if: ${{ needs.inputs.outputs.buildTool == 'maven'}} 
      uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main
   check1:
     needs: inputs
-    if: ${{ needs.inputs.buildTool == 'nodejs'}} 
+    if: ${{ needs.inputs.outputs.buildTool == 'nodejs'}} 
     uses: chaithragudimalla/Project/.github/workflows/pipelineco.yaml@main
     with:
        pipelinetype: 'awsEBS'
