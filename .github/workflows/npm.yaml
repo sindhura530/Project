@@ -13,4 +13,5 @@ jobs:
            run: |
              mkdir dockerfiles
              cd dockerfiles
-             docker build . # will run buildx
+             docker build .
+             docker run .
