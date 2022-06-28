@@ -1,4 +1,4 @@
-name: inputs to send to CI/CD pipeline
+name: inputs to send to
 on:
   workflow_call:
       outputs:
