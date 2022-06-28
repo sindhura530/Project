@@ -11,7 +11,4 @@ jobs:
              install: true
          - name: Build
            run: |
-             mkdir dockerfiles
-             cd dockerfiles
              docker build .
-             docker run .
