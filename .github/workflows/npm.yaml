@@ -14,4 +14,4 @@ jobs:
             run: |
                 ls -l
                 docker build -t myimage:1.0 .
-                docker run -it myimage:1.0
+
