@@ -16,6 +16,10 @@ jobs:
     needs: inputs
     if: ${{ needs.inputs.buildTool == 'nodejs'}} 
     uses: chaithragudimalla/Project/.github/workflows/pipelineco.yaml@main
+    with:
+       pipelinetype: 'awsEBS'
+       buildTool: 'maven'
+       language: 'java'
   compile:
     runs-on: ubuntu-latest
     steps:
