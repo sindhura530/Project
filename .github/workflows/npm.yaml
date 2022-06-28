@@ -1,0 +1,9 @@
+name: npm pipeline
+on: 
+  workflow_call:
+jobs:
+    build:
+       runs-on: ubuntu-latest
+       steps:
+          - name: building the image with required packages
+            run: docker
