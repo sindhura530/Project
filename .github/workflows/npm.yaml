@@ -13,4 +13,4 @@ jobs:
           - name: building docker image
             run: |
                 ls -l
-                docker build .
+                docker build -it myimage:1.0 .
