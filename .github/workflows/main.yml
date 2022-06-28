@@ -48,9 +48,12 @@ jobs:
     needs: Quality-Gates
     steps:
        - uses: actions/checkout@v3
-       - name: github
-         run: echo 'github'
-       - name: Jfrog
+       - name: github uploading
+         uses: actions/upload-artifact@v3
+         with:
+           name: 'Dockerfile'
+           path: /home/runner/work/Project/Project/Dockerfile
+       - name: uploading to jFrog
          run: echo 'jfrog'
   Deploy_Develop:
     runs-on: ubuntu-latest
