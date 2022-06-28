@@ -1,6 +1,8 @@
 name: CI and CD pipeline
 on:
   workflow_dispatch:
+env:
+  res: false
 jobs:
   inputs:
      uses: chaithragudimalla/Project/.github/workflows/pipelineco.yaml@main
@@ -9,6 +11,7 @@ jobs:
        buildTool: 'maven'
        language: 'java'
   check:
+     needs: inputs
      if: ${{ needs.inputs.buildTool }} == 'maven'
      uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main
   compile:
