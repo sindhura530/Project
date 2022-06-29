@@ -58,7 +58,7 @@ jobs:
        - name: github uploading
          uses: actions/upload-artifact@v3
          with:
-           name: 'Dockerfile'
+           name: 'Dockerfile.txt'
            path: /home/runner/work/Project/Project/Dockerfile.txt
        - name: uploading to jFrog
          run: echo 'jfrog'
