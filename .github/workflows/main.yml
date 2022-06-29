@@ -16,6 +16,8 @@ jobs:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'npm')"
     uses: chaithragudimalla/Project/.github/workflows/npm.yaml@main
+    with:
+       result: Dockerfile.txt
     
   check2:
     needs: inputs
