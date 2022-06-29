@@ -10,14 +10,14 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-  #    - name: pulling image from docker hub and building
-  #      run: |
-  #         mkdir myfiles
-  #         cd myfiles
-  #         echo 'FROM amazon/aws-lambda-nodejs'     > Dockerfile
-  #         docker build .
-  #         docker run -it nodejs-chaisindh:${{ matrix.node-version }}
-  #         npm install
+      - name: pulling image from docker hub and building
+        run: |
+           mkdir myfiles
+           cd myfiles
+           docker pull amazon/aws-lambda-nodejs:latest
+           docker build -t aws-lambda-nodejs:latest .
+           docker run -it aws-lambda-nodejs:latest
+           npm install
       - name: Install dependencies
         run: echo "npm run build"
       - name: Run test
