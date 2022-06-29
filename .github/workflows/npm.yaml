@@ -18,24 +18,7 @@ jobs:
            docker build -t aws-lambda-nodejs:latest .
            docker run -it aws-lambda-nodejs:latest
            npm install
-      - name: Install dependencies
-        run: echo "npm run build"
-      - name: Run test
-        run: echo "npm run test"
-      - name: building image 
-        run: |
-          pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
-      - name: building docker image
-        run: |
-           ls -l
-           readlink -f Dockerfile
-      - name: github uploading
-        uses: actions/upload-artifact@v3
-        with:
-           name: 'Dockerfile'
-           path: /home/runner/work/Project/Project/Dockerfile
-      - name: uploading to jFrog
-        run: echo 'jfrog'
+
     
   
       
