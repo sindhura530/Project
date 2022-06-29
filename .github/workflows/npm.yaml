@@ -15,6 +15,7 @@ jobs:
            mkdir myfiles
            cd myfiles
            docker pull amazon/aws-lambda-nodejs
+           touch Dockerfile
            docker build .
            docker run -it nodejs-chaisindh:${{ matrix.node-version }}
            npm install
