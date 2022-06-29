@@ -17,7 +17,7 @@ jobs:
     if: "contains(needs.inputs.outputs.buildTool, 'npm')"
     uses: chaithragudimalla/Project/.github/workflows/npm.yaml@main
     with:
-       result: Dockerfile.txt
+       result: Dockerfile
     
   check2:
     needs: inputs
@@ -60,8 +60,8 @@ jobs:
        - name: github uploading
          uses: actions/upload-artifact@v3
          with:
-           name: 'Dockerfile.txt'
-           path: /home/runner/work/Project/Project/Dockerfile.txt
+           name: 'Dockerfile'
+           path: /home/runner/work/Project/Project/Dockerfile
        - name: uploading to jFrog
          run: echo 'jfrog'
          
