@@ -23,7 +23,7 @@ jobs:
     uses: chaithragudimalla/Project/.github/workflows/ng.yaml@main
   Code-Quality:
     runs-on: ubuntu-latest
-    needs: check2
+    needs: check1
     steps:
        - uses: actions/checkout@v3
        - name: code Analysis
@@ -52,14 +52,14 @@ jobs:
          
   Publish_Artifact:
     runs-on: ubuntu-latest
-    needs: [check2, Quality-Gates]
+    needs: [check1, Quality-Gates]
     steps:
        - uses: actions/checkout@v3
        - name: github uploading
          uses: actions/upload-artifact@v3
          with:
            name: 'Dockerfile'
-           path: /home/runner/work/Project/Project/Dockerfile
+           path: /home/runner/work/Project/Project/Dockerfile.txt
        - name: uploading to jFrog
          run: echo 'jfrog'
          
