@@ -15,13 +15,13 @@ jobs:
         - name: building image 
           run: |
                pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
-          - name: building docker image
-            run: |
-                ls -l
-                readlink -f Dockerfile
+        - name: building docker image
+          run: |
+              ls -l
+              readlink -f Dockerfile
     publish-Artifact:
       runs-on: ubuntu-latest
-      needs: Quality-Gates
+      needs: build
       steps:
         - uses: actions/checkout@v3
         - name: github uploading
