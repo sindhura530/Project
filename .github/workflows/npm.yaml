@@ -1,15 +1,31 @@
 name: npm pipeline
-on: 
-  workflow_call:
+
+on:
+ workflow_call
+
 jobs:
-    build:
-       runs-on: ubuntu-latest
-       steps:
-          - name: installing docker image
-            run: |
-                pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
-          - name: building docker image
-            run: |
-                ls -l
-                readlink -f Dockerfile
+  test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: setup npm
+      run: npm install
+    - name: Install dependencies
+      run: echo "npm run build"
+    - name: Run test
+      run: echo "npm run test"
+    
+  
+      
+
 
