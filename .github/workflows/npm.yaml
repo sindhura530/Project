@@ -7,8 +7,6 @@ jobs:
        steps:
           - name: installing docker image
             run: |
-                mkdir dockerFiles
-                cd dockerFiles
                 pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
           - name: building docker image
             run: |
