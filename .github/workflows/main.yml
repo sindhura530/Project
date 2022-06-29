@@ -64,7 +64,7 @@ jobs:
          uses: actions/upload-artifact@v3
          with:
            name: 'Dockerfile'
-           path: /home/runner/work/Project/Project/dockerFiles/Dockerfile
+           path: /home/runner/work/Project/Project/Dockerfile
        - name: uploading to jFrog
          run: echo 'jfrog'
          
