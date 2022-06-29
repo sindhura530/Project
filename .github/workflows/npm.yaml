@@ -1,10 +1,7 @@
 name: npm pipeline
 
 on:
- workflow_call:
-      outputs:
-          result:
-              value: ${{ jobs.test.outputs.output1 }}
+ workflow_call
 
 jobs:
   test:
@@ -12,8 +9,6 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
-    outputs:
-      output1: ${{ steps.step1.outputs.result }}
     steps:
   #    - name: pulling image from docker hub and building
   #      run: |
@@ -30,12 +25,17 @@ jobs:
       - name: building image 
         run: |
           pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
-      - id: step1
-        run: echo "::set-output name=result::Dockerfile"
       - name: building docker image
         run: |
            ls -l
            readlink -f Dockerfile
+      - name: github uploading
+        uses: actions/upload-artifact@v3
+        with:
+           name: 'Dockerfile'
+           path: /home/runner/work/Project/Project/Dockerfile
+      - name: uploading to jFrog
+        run: echo 'jfrog'
     
   
       
