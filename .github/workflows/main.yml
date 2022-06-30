@@ -1,6 +1,12 @@
 name: CI and CD pipeline
 
 on:
+  pull_request:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - main
+      - develop
+     
   workflow_dispatch:
   
 jobs:
