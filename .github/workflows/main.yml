@@ -17,7 +17,7 @@ jobs:
     if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
     uses: chaithragudimalla/Project/.github/workflows/npm.yaml@main
     with:
-      dockerImage: appdynamics/nodejs-agent
+      dockerImage: amazon/aws-lambda-nodejs
   check2:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'ng')"
