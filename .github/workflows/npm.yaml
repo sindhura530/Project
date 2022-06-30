@@ -23,17 +23,17 @@ jobs:
         run: echo "npm run build"
       - name: Run test
         run: echo "npm run test"
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-      - name: login
-        run: echo "login success"
-      - name: tag
-        run:  docker tag ${{ inputs.image_name }} chai219/${{ inputs.image_name }}:latest
-      - name: push
-        run: docker push chai219/${{ inputs.image_name }}:latest
+ #     - name: Log in to Docker Hub
+ #       uses: docker/login-action@v1
+ #       with:
+ #         username: ${{ secrets.REGISTRY_USERNAME }}
+ #         password: ${{ secrets.REGISTRY_PASSWORD }}
+ #     - name: login
+ #       run: echo "login success"
+ #     - name: tag
+ #       run:  docker tag ${{ inputs.image_name }} chai219/${{ inputs.image_name }}:latest
+ #     - name: push
+ #       run: docker push chai219/${{ inputs.image_name }}:latest
       - name: building image 
         run: |
           pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
