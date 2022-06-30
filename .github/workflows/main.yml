@@ -14,7 +14,7 @@ jobs:
      
   check1:
     needs: inputs
-    if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'angular')"
+    if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'java')"
     uses: chaithragudimalla/Project/.github/workflows/npm.yaml@main
     
   check2:
