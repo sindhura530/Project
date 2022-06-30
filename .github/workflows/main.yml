@@ -24,6 +24,9 @@ jobs:
     uses: chaithragudimalla/Project/.github/workflows/npm.yaml@main
     with:
       image_name: ubuntu
+    secrets:
+       registry_username: ${{ secrets.REGISTRY_USERNAME }}
+       registry_password: ${{ secrets.REGISTRY_PASSWORD }}
   check2:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'ng')"
