@@ -3,7 +3,7 @@ name: nodejs pipeline
 on:
  workflow_call:
     inputs:
-       dockerImage:
+       image_name:
            type: string
            required: true
 
