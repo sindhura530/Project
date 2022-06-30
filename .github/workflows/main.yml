@@ -17,7 +17,7 @@ jobs:
     if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
     uses: chaithragudimalla/Project/.github/workflows/npm.yaml@main
     with:
-      image_name: aws-lambda-nodejs
+      image_name: ubuntu
   check2:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'ng')"
