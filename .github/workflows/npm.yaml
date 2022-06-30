@@ -6,6 +6,11 @@ on:
        image_name:
            type: string
            required: true
+    secrets:
+        registry_username:
+             required: true
+        registry_password:
+             required: true
 
 jobs:
   test:
