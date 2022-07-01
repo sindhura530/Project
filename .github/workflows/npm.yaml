@@ -1,5 +1,4 @@
 name: nodejs pipeline
-
 on:
  workflow_call:
     inputs:
