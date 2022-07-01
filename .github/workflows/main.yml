@@ -15,8 +15,7 @@ jobs:
   check:
      needs: inputs
      if: "contains(needs.inputs.outputs.buildTool, 'maven')"
-     uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main
-     
+     uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main     
   check1:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
