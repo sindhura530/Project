@@ -46,7 +46,7 @@ jobs:
            ls -l
            readlink -f Dockerfile
       - name: github uploading
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v1
         with:
            name: 'Dockerfile'
            path: /home/runner/work/Project/Project/Dockerfile
