@@ -18,6 +18,7 @@ jobs:
      uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main    
      with:
         dockerImage: ubuntu
+        
   check1:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
@@ -27,12 +28,14 @@ jobs:
     secrets:
        registry_username: ${{ secrets.REGISTRY_USERNAME }}
        registry_password: ${{ secrets.REGISTRY_PASSWORD }}
+       
   check2:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'ng')"
     uses: chaithragudimalla/Project/.github/workflows/ng.yaml@main
     with:
         dockerImage: ubuntu
+        
   Code-Quality:
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
     needs: [check, check1, check2]
