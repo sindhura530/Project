@@ -37,7 +37,7 @@ jobs:
         dockerImage: ubuntu
         status: success
   Code-Quality:
-    needs: [check,check1,check2]
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
     runs-on: ubuntu-latest
     steps:
        - uses: actions/checkout@v3
