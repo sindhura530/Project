@@ -18,14 +18,12 @@ jobs:
      uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main    
      with:
         dockerImage: ubuntu
-        status: success
   check1:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
     uses: chaithragudimalla/Project/.github/workflows/npm.yaml@main
     with:
       image_name: ubuntu
-      status: success
     secrets:
        registry_username: ${{ secrets.REGISTRY_USERNAME }}
        registry_password: ${{ secrets.REGISTRY_PASSWORD }}
@@ -35,7 +33,6 @@ jobs:
     uses: chaithragudimalla/Project/.github/workflows/ng.yaml@main
     with:
         dockerImage: ubuntu
-        status: success
   Code-Quality:
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
     needs: [check, check1, check2]
@@ -56,7 +53,7 @@ jobs:
          run: echo 'scanning'
          
   Quality-Gates:
-    if: ${{ always() }}
+    #if: ${{ always() }}
     #if: github.event.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     needs: [security-scan]
