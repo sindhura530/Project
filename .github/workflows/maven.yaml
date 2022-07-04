@@ -1,17 +1,17 @@
 name: maven pipeline
 on:
   workflow_call:
-     outputs:
+     inputs:
         dockerImage: 
-           value: ${{ jobs.docker.outputs.output1 }}
+           type: string
+           required: true
+        status:
+           type: string
+           required: true
 jobs:
     docker:
       runs-on: ubuntu-latest
-      outputs:
-         output1: ${{ steps.step1.outputs.dockerImage }}
       steps:
-        - id: step1
-          run: echo "::set-output name=dockerImage::'Dockerfile'"
         - name: building image 
           run: echo "image"
         - name: building image 
