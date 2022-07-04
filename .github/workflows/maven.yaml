@@ -5,9 +5,6 @@ on:
         dockerImage: 
            type: string
            required: true
-        status:
-           type: string
-           required: true
 jobs:
     docker:
       runs-on: ubuntu-latest
