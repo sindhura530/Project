@@ -1,17 +1,17 @@
 name: Angular pipeline
 on:
   workflow_call:
-     outputs:
+     inputs:
         dockerImage: 
-           value: ${{ jobs.docker.outputs.output1 }}
+           type: string
+           required: true
+        status:
+           type: string
+           required: true
 jobs:
     build:
       runs-on: ubuntu-latest
-      outputs:
-         output1: ${{ steps.step1.outputs.dockerImage }}
       steps:
-        - id: step1
-          run: echo "::set-output name=dockerImage::'Dockerfile'"
         - name: building image 
           run: |
                pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile.txt" -OutFile "Dockerfile.txt"'
