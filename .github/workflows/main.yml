@@ -15,7 +15,7 @@ jobs:
   check:
      needs: inputs
      if: "contains(needs.inputs.outputs.buildTool, 'maven')"
-     uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main     
+     uses: chaithragudimalla/Project/.github/workflows/maven.yaml@main    
   check1:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
@@ -30,6 +30,7 @@ jobs:
     if: "contains(needs.inputs.outputs.buildTool, 'ng')"
     uses: chaithragudimalla/Project/.github/workflows/ng.yaml@main
   Code-Quality:
+    if: jobs.check.outcome == check3 || job.job2.steps.id == check3
     runs-on: ubuntu-latest
     needs: check1
     steps:
