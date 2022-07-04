@@ -5,6 +5,9 @@ on:
        image_name:
            type: string
            required: true
+       status:
+           type: string
+           required: true
     secrets:
         registry_username:
              required: true
