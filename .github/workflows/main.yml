@@ -37,7 +37,7 @@ jobs:
         dockerImage: ubuntu
         status: success
   Code-Quality:
-    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    if: "contains(join(needs.*.result, ','), 'success')"
     needs: [check, check1, check2]
     runs-on: ubuntu-latest
     steps:
